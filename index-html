@@ -1985,7 +1985,18 @@ function goToStart(){
 
 function beginSurprise(){
 
-    playMusic();
+    const audio = document.getElementById("bgMusic");
+    const btn = document.getElementById("musicButton");
+
+    // Only attempt to start if it is not already playing
+    if (!musicStarted) {
+        audio.play().then(function(){
+            musicStarted = true;
+            btn.innerHTML = "🎵 Pause Perfect";
+        }).catch(function(err){
+            console.log("Playback error:", err);
+        });
+    }
 
     goToNextPage();
 
